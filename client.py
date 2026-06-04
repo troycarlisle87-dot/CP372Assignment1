@@ -1,6 +1,8 @@
 import socket
 import os
-
+#All code completed in this document is done by that of a group collective
+#All of our ideas and logic are our own, no other students current or previous work
+#Was used to create this document 
 # Constants
 HOST = "127.0.0.1"  # Randomly Chosen
 PORT = 5000  # Clean number no chance of accidents

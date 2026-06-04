@@ -1,6 +1,9 @@
 import socket
 import os
 
+#All code completed in this document is done by that of a group collective
+#All of our ideas and logic are our own, no other students current or previous work
+#Was used to create this document 
 # Constants
 HOST = "127.0.0.1"  # Randomly Chosen
 PORT = 5000  # Clean number no chance of accidents
@@ -61,7 +64,7 @@ def receive_exact_bytes(conn, filesize):
     return file_data
 
 
-# Stops sneaky path stuff like ../../file.txt
+# Stops sneaky path stuff 
 def safe_filename(filename):
     return os.path.basename(filename)
 
@@ -70,7 +73,7 @@ def safe_filename(filename):
 valid_users = load_users()
 print(f"loaded users: {valid_users}")
 
-# Make sure the server file folder exists before anything starts
+# Does the folder really exists budyd?
 os.makedirs(SERVER_FILES_DIR, exist_ok=True)
 
 # How you set this up inside of the assignments packet
@@ -81,7 +84,7 @@ server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 server_socket.bind((HOST, PORT))
 server_socket.listen(1)
 
-# Rubber Duck
+# Rubber Duck emthod
 print(f"Server listening on {HOST}:{PORT}")
 
 # Failsafe
@@ -99,7 +102,7 @@ try:
         try:
             while True:
                 message = receive_command(conn)
-
+                #Just some more error handling pretty forwars
                 if message is None:
                     print("Client disconnected unexpectedly.")
                     break
@@ -179,7 +182,7 @@ try:
                     # Confirmation pleasentires
                     print(f"File command received from {current_user}: {filename} ({filesize} bytes)")
 
-                    # This tells the client the server is ready for the raw file bytes
+                    # This tells the client the server is ready to take its load
                     conn.sendall("OK Ready to receive file".encode())
 
                     # Actual file receiving part
@@ -212,7 +215,7 @@ try:
                     print("Client requested disconnect.")
                     break
 
-                # Anything that is not LOGIN, MSG, FILE, or QUIT
+                # failsafe catch all because I am lazy 
                 else:
                     conn.sendall("ERROR Invalid command".encode())
                     continue
